@@ -256,8 +256,8 @@ class TCurveTest(unittest.TestCase):
 
     def test500_010_ShouldReturnZeroForZeroValueOfT(self):
         myT = T.TCurve(3)
-        self.assertEqual(myT.integrate(0.0, myT.n, myT.fTest), 0.0)
+        self.assertEqual(myT.integrate(0.0, myT.n, myT.fTest(2, myT.n)), 0.0)
         
     def test500_020_ShouldIntegrateNominalFunctionWithNonZeroT(self):
         myT = T.TCurve(3)
-        self.assertEqual(myT.integrate(1.5, myT.n, myT.fTest), 0.5)
+        self.assertEqual(myT.integrate(1.5, myT.n, myT.fTest(2, myT.n)), 0.5)

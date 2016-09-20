@@ -64,7 +64,26 @@ class TCurve(object):
     def integrate(self, t, n, f):
         if (t == 0.0):
             return 0.0
-        pass
+        epsilon = 0.001
+        simpsonOld = 0
+        simpsonNew = epsilon
+        s = 4 # Number of regions to begin with
+        lowBound = 0
+        highBound = t
+        while((abs(simpsonOld - simpsonNew) / simpsonNew) > epsilon):
+            simpsonOld = simpsonNew
+            w = (highBound - lowBound) / s
+            simpsonSum = f(lowBound, *n) + f(highBound, *n) # Takes care of the first and last element with coefficient 1
+            for i in range(1, s, 2): # 1, 3, 5, ... n - 1
+                simpsonSum += 4 * f(lowBound + i * w, *n) # Takes care of the odd elements with coefficient 4
+            for i in range(2, s-1, 2): # 2, 4, 6, ... n - 2
+                simpsonSum += 2 * f(lowBound + i * w, *n) # Takes care of the even elements with coefficient 2
+                
+            simpsonNew = (w/3) * simpsonSum;
+            s = s * 2
+            
+        return simpsonNew
+        
     
     def fTest(self, u, n):
         return u
