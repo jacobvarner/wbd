@@ -230,3 +230,36 @@ class TCurveTest(unittest.TestCase):
         myT = T.TCurve(self.nominalN)
         self.assertAlmostEquals(myT.f(1, 5), 0.578703704)
         
+# 500 f
+# Analysis:
+#    inputs
+#    f -> function mandatory validated
+#    n -> numeric mandatory validated
+#    lowBound -> float mandatory unvalidated
+#    highBound -> float mandatory unvalidated
+#
+# Happy Path:
+#    f:
+#        nominal case: f = u
+#        nominal case: f = u**2
+#    n:
+#        nominal case: n = 12
+#        low bound: n = 3
+#        high bound: n = 29
+#    lowBound:
+#        nominal case: 0
+#        low bound: -infinity
+#        high bound: infinity
+#    highBound:
+#        nominal case: 1
+#        low bound: lowBound
+#        high bound: infinity
+#
+# Sad Path:
+#    lowBound is missing
+#    highBound is missing
+#    lowBound is not numeric       lowBound = "c"
+#    highBound is not numeric      highBound = "b"
+#    lowBound > highBound          lowBond = 3.0, highBound = 2.0
+
+        
