@@ -268,4 +268,4 @@ class TCurveTest(unittest.TestCase):
         
     def test500_050_ShouldIntegrateFunctionWithHighValueT(self):
         myT = T.TCurve(self.nominalN)
-        self.assertAlmostEquals(myT.integrate(30.0, myT.n, myT.f), 1.333333, 4)
+        self.assertAlmostEquals(myT.integrate(20.0, myT.n, myT.f), 1.333333, 4)
