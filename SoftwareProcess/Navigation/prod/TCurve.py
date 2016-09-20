@@ -90,9 +90,3 @@ class TCurve(object):
     
     def fTest(self, u, n):
         return u
-        
-        
-    
-        
-            
-        

@@ -249,7 +249,6 @@ class TCurveTest(unittest.TestCase):
 # Sad Path:
 #    none: f, n, and t are pre-validated
 
-
     def test500_010_ShouldReturnZeroForZeroValueOfT(self):
         myT = T.TCurve(self.nominalN)
         self.assertEqual(myT.integrate(0.0, myT.n, myT.fTest), 0.0)
