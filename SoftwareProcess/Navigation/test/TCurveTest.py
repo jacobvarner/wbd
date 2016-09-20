@@ -241,12 +241,8 @@ class TCurveTest(unittest.TestCase):
 #    f:
 #        nominal case: f = u
 #        expected case: f
-#    n:
-#        nominal case: n = 12
-#        low bound: n = 3
-#        high bound: n = 29
 #    t:
-#        nominal case: 1.5
+#        nominal case: 2.5
 #        low bound: 0
 #        high bound: infinity
 #
@@ -269,3 +265,7 @@ class TCurveTest(unittest.TestCase):
     def test500_040_ShouldIntegrateFunctionWithNonZeroT(self):
         myT = T.TCurve(self.nominalN)
         self.assertAlmostEquals(myT.integrate(2.3, myT.n, myT.f), 1.22275, 4)
+        
+    def test500_050_ShouldIntegrateFunctionWithHighValueT(self):
+        myT = T.TCurve(self.nominalN)
+        self.assertAlmostEquals(myT.integrate(30.0, myT.n, myT.f), 1.333333, 4)
