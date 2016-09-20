@@ -240,7 +240,7 @@ class TCurveTest(unittest.TestCase):
 # Happy Path:
 #    f:
 #        nominal case: f = u
-#        nominal case: f = u**2
+#        expected case: f
 #    n:
 #        nominal case: n = 12
 #        low bound: n = 3
@@ -253,7 +253,11 @@ class TCurveTest(unittest.TestCase):
 # Sad Path:
 #    none: f, n, and t are pre-validated
 
+
     def test500_010_ShouldReturnZeroForZeroValueOfT(self):
         myT = T.TCurve(3)
-        self.assertEqual(myT.integrate(0.0, 3, myT.f(0, 5)), 0.0)
+        self.assertEqual(myT.integrate(0.0, 3, myT.fTest(1.0, 3)), 0.0)
         
+    def test500_020_ShouldIntegrateNominalFunctionWithNonZeroT(self):
+        myT = T.TCurve(3)
+        self.assertEqual(myT.integrate(1.5, 3, myT.fTest(1.0, 3)), 0.5)
