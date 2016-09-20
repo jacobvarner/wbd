@@ -73,17 +73,20 @@ class TCurve(object):
         while((abs(simpsonOld - simpsonNew) / simpsonNew) > epsilon):
             simpsonOld = simpsonNew
             w = (highBound - lowBound) / s
-            simpsonSum = f(lowBound, *n) + f(highBound, *n) # Takes care of the first and last element with coefficient 1
-            for i in range(1, s, 2): # 1, 3, 5, ... n - 1
-                simpsonSum += 4 * f(lowBound + i * w, *n) # Takes care of the odd elements with coefficient 4
-            for i in range(2, s-1, 2): # 2, 4, 6, ... n - 2
-                simpsonSum += 2 * f(lowBound + i * w, *n) # Takes care of the even elements with coefficient 2
-                
+            # Takes care of the first and last element with coefficient 1
+            simpsonSum = (f(lowBound, n) + f(highBound, n))
+            # 1, 3, 5, ... n - 1
+            for i in range(1, s, 2):
+                # Takes care of the odd elements with coefficient 4
+                simpsonSum += 4 * f(lowBound + i * w, n)
+            # 2, 4, 6, ... n - 2
+            for i in range(2, s-1, 2):
+                # Takes care of the even elements with coefficient 2
+                simpsonSum += 2 * f(lowBound + i * w, n)
             simpsonNew = (w/3) * simpsonSum;
             s = s * 2
             
         return simpsonNew
-        
     
     def fTest(self, u, n):
         return u
