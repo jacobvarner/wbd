@@ -7,17 +7,20 @@
     @author: Jacob Varner
 
 '''
+from objc._objc import NULL
 class Angle():
     def __init__(self):
         # self.angle = ...       set to 0 degrees 0 minutes
-        self.angle = 0;
+        self.angle = 0.0
         pass
     
-    def setDegrees(self, degrees):
+    def setDegrees(self, degrees = 0):
         if (type(degrees) != int and type(degrees) != float):
             raise ValueError("Angle.setDegrees:  'degrees' must be either an integer or floating point value.")
-        degrees = degrees % 360
+        degrees = round(degrees * 60.0, 1) / 60.0
+        degrees = float(degrees % 360)
         self.angle = degrees
+        return self.angle
         pass
     
     def setDegreesAndMinutes(self, angleString):
@@ -33,7 +36,6 @@ class Angle():
             degrees = int(degrees)
         except ValueError:
             raise ValueError("Angle.setDegreesAndMinutes:  The degree value must be an integer.")
-        degrees = degrees % 360
         minutes = angleString[separator + 1:]
         if (len(minutes) == 0):
             raise ValueError("Angle.setDegreesAndMinutes: The minutes value is missing.")
@@ -62,30 +64,39 @@ class Angle():
             minutes = minutes % 60
             
         minutesFraction = float(minutes) / 60
-        degrees = degrees + minutesFraction
-        self.angle = degrees
-        return self
+        if (degrees >= 0):
+            degrees = degrees + minutesFraction
+        else:
+            degrees = (abs(degrees) + minutesFraction) * -1
+        self.angle = degrees % 360
+        return self.angle
         pass
     
-    def add(self, angle):
+    def add(self, angle=NULL):
+        if (angle == NULL):
+            raise ValueError("Angle.add:  You must pass a valid instance of Angle.")
         if (not isinstance(angle, Angle)):
             raise ValueError("Angle.add:  You must pass a valid instance of Angle.")
         totalDegrees = self.angle + angle.angle
         totalDegrees = totalDegrees % 360
         self.angle = totalDegrees
-        return self
+        return self.angle
         pass
     
-    def subtract(self, angle):
+    def subtract(self, angle=NULL):
+        if (angle == NULL):
+            raise ValueError("Angle.subtract:  You must pass a valid instance of Angle.")
         if (not isinstance(angle, Angle)):
             raise ValueError("Angle.subtract:  You must pass a valid instance of Angle.")
         totalDegrees = self.angle - angle.angle
         totalDegrees = totalDegrees % 360
         self.angle = totalDegrees
-        return self
+        return self.angle
         pass
     
-    def compare(self, angle):
+    def compare(self, angle=NULL):
+        if (angle == NULL):
+            raise ValueError("Angle.compare:  You must pass a valid instance of Angle.")
         if (not isinstance(angle, Angle)):
             raise ValueError("Angle.compare:  You must pass a valid instance of Angle.")
         if (self.angle > angle.angle):
