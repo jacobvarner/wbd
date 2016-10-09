@@ -1,8 +1,4 @@
-import Navigation.prod.Angle as Angle
+import Navigation.prod.Fix as Fix
 
-angle1 = Angle.Angle()
-angle2 = Angle.Angle()
-
-angle1.setDegreesAndMinutes("24d30")
-angle2.setDegreesAndMinutes("24d31")
-print(angle2.getDegrees())
+fix1 = Fix.Fix("log.txt")
+print(fix1.logPrefix())
