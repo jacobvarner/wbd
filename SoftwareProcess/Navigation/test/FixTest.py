@@ -1,5 +1,6 @@
 import unittest
 import Navigation.prod.Fix as Fix
+import re
 
 
 class FixTest(unittest.TestCase):
@@ -71,5 +72,36 @@ class FixTest(unittest.TestCase):
             aFix = Fix.Fix("test.txt")
             aFix.setSightingFile("test.txt")
         self.assertEquals(expectedDiag, context.exception.args[0][0:len(expectedDiag)])
+        
+#    Acceptance Test 300
+#        Analysis - getSightings
+#            inputs:
+#                none
+#            outputs:
+#                Tuple with latitude and longitude of approximate location
+#            state change:
+#                Navigation calculations are written to the log file
+#
+#    Happy path
+    def test300_010_ShouldReturnTuple(self):
+        aFix = Fix.Fix("test.txt")
+        aFix.setSightingFile("file.xml")
+        self.assertEquals(len(aFix.getSightings()), 2)
+        
+    def test300_020_ShouldWriteToLog(self):
+        aFix = Fix.Fix("test.txt")
+        aFix.setSightingFile("file.xml")
+        aFix.getSightings()
+        f = open("test.txt", "r")
+        str = f.read()
+        self.assertNotEqual(re.search(r'\d+-\d+-\d+\s\d+:\d+:\d', str), None)
+        
+    def test300_910_ShouldReturnValueErrorForNoSightingFile(self):
+        expectedDiag = "Fix.getSightings:  "
+        aFix = Fix.Fix("test.txt")
+        with self.assertRaises(ValueError) as context:
+            aFix.getSightings()
+        self.assertEquals(expectedDiag, context.exception.args[0][0:len(expectedDiag)])
+        
         
     
