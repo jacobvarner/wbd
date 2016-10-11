@@ -72,12 +72,4 @@ class FixTest(unittest.TestCase):
             aFix.setSightingFile("test.txt")
         self.assertEquals(expectedDiag, context.exception.args[0][0:len(expectedDiag)])
         
-    def test200_920_ShouldRaiseValueErrorIfFileCantBeOpened(self):
-        expectedDiag = "Fix.setSightingFile:  "
-        with self.assertRaises(ValueError) as context:
-            aFix = Fix.Fix("test.txt")
-            aFix.setSightingFile("f.xml")
-            f = open("f2.xml", "r")
-        self.assertEquals(expectedDiag, context.exception.args[0][0:len(expectedDiag)])
-        
     
