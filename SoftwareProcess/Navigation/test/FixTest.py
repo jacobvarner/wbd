@@ -86,7 +86,7 @@ class FixTest(unittest.TestCase):
     def test300_010_ShouldReturnTuple(self):
         aFix = Fix.Fix("test.txt")
         aFix.setSightingFile("file.xml")
-        self.assertEquals(len(aFix.getSightings()), 2)
+        self.assertEquals(type(aFix.getSightings()), tuple)
         
     def test300_020_ShouldWriteToLog(self):
         aFix = Fix.Fix("test.txt")
