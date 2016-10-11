@@ -11,7 +11,6 @@ import datetime
 import xml.etree.ElementTree as ET
 import math
 import Navigation.prod.Angle as Angle
-from __builtin__ import int
 
 class Fix():
     def __init__(self, logFile="log.txt"):
