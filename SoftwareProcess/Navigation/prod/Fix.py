@@ -24,6 +24,8 @@ class Fix():
         self.logFile = logFile
         self.log("Log File:" + '\t' + os.path.abspath(logFile))
         self.sightingFile = None
+        self.ariesFile = None
+        self.starFile = None
     
     def setSightingFile(self, sightingFile):
         if (type(sightingFile) != str or len(sightingFile) < 5):
@@ -41,6 +43,12 @@ class Fix():
             output = True
         self.log("Sighting File:" + '\t' + os.path.abspath(sightingFile))    
         return output
+    
+    def setAriesFile(self, ariesFile):
+        pass
+    
+    def setStarFile(self, starFile):
+        pass
     
     def getSightings(self):
         if (self.sightingFile == None):

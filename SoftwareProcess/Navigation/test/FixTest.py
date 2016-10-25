@@ -53,7 +53,7 @@ class FixTest(unittest.TestCase):
 #           inputs:
 #               f.xml - sighting file where f is the filename
 #           outputs:
-#               boolean - true if f.xml is new, false if it already exists
+#              absolute filepath of the file
 #           state change:
 #               writes to the log file
 #
@@ -101,6 +101,32 @@ class FixTest(unittest.TestCase):
         aFix = Fix.Fix("test.txt")
         with self.assertRaises(ValueError) as context:
             aFix.getSightings()
+        self.assertEquals(expectedDiag, context.exception.args[0][0:len(expectedDiag)])
+        
+
+#   Acceptance Test 500
+#       Analysis - setStarFile
+#           inputs:
+#               f.txt - Star file where f is the filename
+#           outputs:
+#               the absolute filepath of the file
+#           state change:
+#               writes to the log file
+#
+#    Happy path
+    def test500_010_ShouldWriteToLogFile(self):
+        aFix = Fix.Fix("test.txt")
+        aFix.setStarFile("star.txt")
+        f = open("test.txt", "r")
+        str = f.read()
+        self.assertNotEqual(str.find("Star File:    "), -1)
+        
+#    Sad path
+    def test500_910_ShouldRaiseValueErrorForWrongFileFormatt(self):
+        expectedDiag = "Fix.setStarFile:  "
+        with self.assertRaises(ValueError) as context:
+            aFix = Fix.Fix("test.txt")
+            aFix.setSightingFile("star.xml")
         self.assertEquals(expectedDiag, context.exception.args[0][0:len(expectedDiag)])
         
         
