@@ -11,6 +11,7 @@ import datetime
 import xml.etree.ElementTree as ET
 import math
 import Navigation.prod.Angle as Angle
+import os
 
 class Fix():
     def __init__(self, logFile="log.txt"):
@@ -21,7 +22,7 @@ class Fix():
         except IOError:
             raise ValueError("Fix.__init__:  logFile could not be opened.")
         self.logFile = logFile
-        self.log("Start of log")
+        self.log("Log File:" + '\t' + os.path.abspath(logFile))
         self.sightingFile = None
     
     def setSightingFile(self, sightingFile):
@@ -38,7 +39,7 @@ class Fix():
         else:
             self.sightingFile = sightingFile
             output = True
-        self.log("Start of sighting file " + sightingFile)    
+        self.log("Sighting File:" + '\t' + os.path.abspath(sightingFile))    
         return output
     
     def getSightings(self):

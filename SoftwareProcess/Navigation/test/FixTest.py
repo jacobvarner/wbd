@@ -32,7 +32,7 @@ class FixTest(unittest.TestCase):
         aFix = Fix.Fix("test.txt")
         f = open("test.txt", "r")
         str = f.read()
-        self.assertNotEqual(str.find("Start of log"), -1)
+        self.assertNotEqual(str.find("Log File:    "), -1)
         
 #    Sad path        
     def test100_910_ShouldReturnValueErrorForWrongFileInputStringLength(self):
@@ -63,7 +63,7 @@ class FixTest(unittest.TestCase):
         aFix.setSightingFile("file.xml")
         f = open("test.txt", "r")
         str = f.read()
-        self.assertNotEqual(str.find("Start of sighting file"), -1)
+        self.assertNotEqual(str.find("Sighting File:    "), -1)
         
 #    Sad path
     def test200_910_ShouldRaiseValueErrorForWrongFileFormatt(self):
