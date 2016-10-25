@@ -22,7 +22,7 @@ class Fix():
         except IOError:
             raise ValueError("Fix.__init__:  logFile could not be opened.")
         self.logFile = logFile
-        self.log("Log File:" + '\t' + os.path.abspath(logFile))
+        self.log("Log File:\t" + os.path.abspath(logFile))
         self.sightingFile = None
         self.ariesFile = None
         self.starFile = None
@@ -36,19 +36,38 @@ class Fix():
             f = open(sightingFile, "r")
         except IOError:
             raise ValueError("Fix.setSightingFile:  sightingFile could not be opened.")
-        if (self.sightingFile == sightingFile):
-            output = False
-        else:
-            self.sightingFile = sightingFile
-            output = True
-        self.log("Sighting File:" + '\t' + os.path.abspath(sightingFile))    
+        self.sightingFile = sightingFile
+        self.log("Sighting File:\t" + os.path.abspath(sightingFile))
+        output = os.path.abspath(sightingFile)
         return output
     
     def setAriesFile(self, ariesFile):
-        pass
+        if (type(ariesFile) != str or len(ariesFile) < 5):
+            raise ValueError("Fix.setAriesFile:  ariesFile must be a string that is the filename of a .txt filetype.")
+        if (ariesFile.find(".txt") == -1):
+            raise ValueError("Fix.setAriesFile:  ariesFile must be a .txt file.")
+        try:
+            f = open(ariesFile, "r")
+        except IOError:
+            raise ValueError("Fix.setAriesFile:  ariesFile could not be opened.")
+        self.ariesFile = ariesFile
+        self.log("Aries File:\t" + os.path.abspath(ariesFile))
+        output = os.path.abspath(ariesFile)
+        return output
     
     def setStarFile(self, starFile):
-        pass
+        if (type(starFile) != str or len(starFile) < 5):
+            raise ValueError("Fix.setStarFile:  starFile must be a string that is the filename of a .txt filetype.")
+        if (starFile.find(".txt") == -1):
+            raise ValueError("Fix.setStarFile:  starFile must be a .txt file.")
+        try:
+            f = open(starFile, "r")
+        except IOError:
+            raise ValueError("Fix.setStarFile:  starFile could not be opened.")
+        self.starFile = starFile
+        self.log("Star File:\t" + os.path.abspath(starFile))
+        output = os.path.abspath(starFile)
+        return output
     
     def getSightings(self):
         if (self.sightingFile == None):

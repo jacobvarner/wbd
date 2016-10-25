@@ -32,7 +32,7 @@ class FixTest(unittest.TestCase):
         aFix = Fix.Fix("test.txt")
         f = open("test.txt", "r")
         str = f.read()
-        self.assertNotEqual(str.find("Log File:    "), -1)
+        self.assertNotEqual(str.find("Log File:\t"), -1)
         
 #    Sad path        
     def test100_910_ShouldReturnValueErrorForWrongFileInputStringLength(self):
@@ -63,7 +63,7 @@ class FixTest(unittest.TestCase):
         aFix.setSightingFile("file.xml")
         f = open("test.txt", "r")
         str = f.read()
-        self.assertNotEqual(str.find("Sighting File:    "), -1)
+        self.assertNotEqual(str.find("Sighting File:\t"), -1)
         
 #    Sad path
     def test200_910_ShouldRaiseValueErrorForWrongFileFormatt(self):
@@ -103,6 +103,30 @@ class FixTest(unittest.TestCase):
             aFix.getSightings()
         self.assertEquals(expectedDiag, context.exception.args[0][0:len(expectedDiag)])
         
+#   Acceptance Test 400
+#       Analysis - setAriesFile
+#           inputs:
+#               f.txt - Aries file where f is the filename
+#           outputs:
+#               the absolute filepath of the file
+#           state change:
+#               writes to the log file
+#
+#    Happy path
+    def test400_010_ShouldWriteToLogFile(self):
+        aFix = Fix.Fix("test.txt")
+        aFix.setStarFile("aries.txt")
+        f = open("test.txt", "r")
+        str = f.read()
+        self.assertNotEqual(str.find("Aries File:\t"), -1)
+        
+#    Sad path
+    def test400_910_ShouldRaiseValueErrorForWrongFileFormatt(self):
+        expectedDiag = "Fix.setAriesFile:  "
+        with self.assertRaises(ValueError) as context:
+            aFix = Fix.Fix("test.txt")
+            aFix.setAriesFile("aries.xml")
+        self.assertEquals(expectedDiag, context.exception.args[0][0:len(expectedDiag)])
 
 #   Acceptance Test 500
 #       Analysis - setStarFile
@@ -116,17 +140,17 @@ class FixTest(unittest.TestCase):
 #    Happy path
     def test500_010_ShouldWriteToLogFile(self):
         aFix = Fix.Fix("test.txt")
-        aFix.setStarFile("star.txt")
+        aFix.setStarFile("stars.txt")
         f = open("test.txt", "r")
         str = f.read()
-        self.assertNotEqual(str.find("Star File:    "), -1)
+        self.assertNotEqual(str.find("Star File:\t"), -1)
         
 #    Sad path
     def test500_910_ShouldRaiseValueErrorForWrongFileFormatt(self):
         expectedDiag = "Fix.setStarFile:  "
         with self.assertRaises(ValueError) as context:
             aFix = Fix.Fix("test.txt")
-            aFix.setSightingFile("star.xml")
+            aFix.setStarFile("star.xml")
         self.assertEquals(expectedDiag, context.exception.args[0][0:len(expectedDiag)])
         
         
