@@ -10,6 +10,7 @@
 import datetime
 import xml.etree.ElementTree as ET
 import math
+import re
 import Navigation.prod.Angle as Angle
 
 class Fix():
@@ -24,7 +25,9 @@ class Fix():
         self.log("Start of log")
         self.sightingFile = None
     
-    def setSightingFile(self, sightingFile):
+    def setSightingFile(self, sightingFile="0"):
+        if (sightingFile == "0"):
+            raise ValueError("Fix.setSightingFile:  a valid sighting file is required.")
         if (type(sightingFile) != str or len(sightingFile) < 5):
             raise ValueError("Fix.setSightingFile:  sightingFile must be a string that is the filename of a .xml filetype.")
         if (sightingFile.find(".xml") == -1):
@@ -61,20 +64,31 @@ class Fix():
                 raise ValueError("Fix.getSightings:  child tag of fix is not a sighting tag.")
             if (sighting.find('body') == None):
                 raise ValueError("Fix.getSightings:  no body tag in sighting.")
+            elif (sighting.find('body').text == None):
+                raise ValueError("Fix.getSightings:  empty body tag in sighting.")
             else:
                 body = sighting.find('body').text
             if (sighting.find('date') == None):
                 raise ValueError("Fix.getSightings:  no date tag in sighting.")
             else:
                 date = sighting.find('date').text
+                datePattern = re.compile("^((19|20)\\d\\d)-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])$")
+                if (re.match(datePattern, date) == None):
+                    raise ValueError("Fix.getSightings:  invalid date format.")
             if (sighting.find('time') == None):
                 raise ValueError("Fix.getSightings:  no time tag in sighting.")
             else:
                 time = sighting.find('time').text
+                timePattern = re.compile("^([0-1]?\d|2[0-3]):([0-5]?\d):([0-5]?\d)")
+                if (re.match(timePattern, time) == None):
+                    raise ValueError("Fix.getSightings:  invalid time format.")
             if (sighting.find('observation') == None):
                 raise ValueError("Fix.getSightings:  no observation tag in sighting.")
             else:
                 observation = sighting.find('observation').text
+                obsPattern = re.compile("^(0[0-8]\d)d([0-5]\d)(\.[0-9]?)?")
+                if (re.match(obsPattern, observation) == None):
+                    raise ValueError("Fix.getSightings:  invalid observation format.")
                 angle1 = Angle.Angle()
                 angle1.setDegreesAndMinutes(observation)
                 angle2 = Angle.Angle()
@@ -84,9 +98,11 @@ class Fix():
             if (sighting.find('height') == None):
                 height = 0
             else:
-                height = float(sighting.find('height').text)
-                if (height < 0):
-                    raise ValueError("Fix.getSightings:  height must be greater than or equal to zero.")
+                height = sighting.find('height').text
+                heightPattern = re.compile("^\d*\.?\d*$")
+                if (re.match(heightPattern, height) == None):
+                    raise ValueError("Fix.getSightings:  invalid height.")
+                height = float(height)
             if (sighting.find('temperature') == None):
                 temperature = 72
             else:
@@ -96,13 +112,20 @@ class Fix():
             if (sighting.find('pressure') == None):
                 pressure = 1010
             else:
-                pressure = int(sighting.find('pressure').text)
+                pressure = sighting.find('pressure').text.strip()
+                presPattern = re.compile("^\d*$")
+                if (re.match(presPattern, pressure) == None):
+                    raise ValueError("Fix.getSightings:  invalid pressure.")
+                pressure = int(pressure)
                 if (pressure < 100 or pressure > 1100):
                     raise ValueError("Fix.getSightings:  pressure is out of range.")
             if (sighting.find('horizon') == None):
                 horizon = "natural"
             else:
-                horizon = sighting.find('horizon').text
+                horizon = sighting.find('horizon').text.lower()
+                horizonPattern = re.compile("(artificial|natural)")
+                if (re.match(horizonPattern, horizon) == None):
+                    raise ValueError("Fix.getSightings:  invalid horizon.")
                 
             adjAltitude = self.adjustAltitude(horizon, height, pressure, temperature, observation)
                 
