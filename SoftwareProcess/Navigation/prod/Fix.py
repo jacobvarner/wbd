@@ -293,24 +293,18 @@ class Fix():
         
         ghaAriesAngle1 = Angle.Angle()
         ghaAriesAngle2 = Angle.Angle()
-        
         ghaAriesAngle1.setDegreesAndMinutes(ghaAries1)
         ghaAriesAngle2.setDegreesAndMinutes(ghaAries2)
-        
         ghaAriesAngle2.subtract(ghaAriesAngle1)
-        
         tempAngle = ghaAriesAngle2.getDegrees()
         tempAngle = tempAngle * (s / 3600)
         ghaAriesAngle2.setDegrees(tempAngle)
-        
         ghaAriesAngle1.add(ghaAriesAngle2)
-        
         shaStarAngle = Angle.Angle()
         shaStarAngle.setDegreesAndMinutes(shaStar)
         shaStarAngle.add(ghaAriesAngle1)
         
         longitude = shaStarAngle.getString()
-        
         
         output = [longitude, latitude]
         return output
