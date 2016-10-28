@@ -75,6 +75,10 @@ class Fix():
     def getSightings(self):
         if (self.sightingFile == None):
             raise ValueError("Fix.getSightings:  no sightingFile has been set.")
+        if (self.ariesFile == None):
+            raise ValueError("Fix.getSightings:  no ariesFile has been set.")
+        if (self.starFile == None):
+            raise ValueError("Fix.getSightings:  no starFile has been set.")
         
         try:
             tree = ET.parse(self.sightingFile)
@@ -86,85 +90,109 @@ class Fix():
             raise ValueError("Fix.getSightings:  root tag is not fix.")
         
         sightingsList = []
+        numSightingErrors = 0
         
         for sighting in fix.findall('sighting'):
             if (sighting.tag != "sighting"):
-                raise ValueError("Fix.getSightings:  child tag of fix is not a sighting tag.")
+                numSightingErrors = numSightingErrors + 1
+                continue
             if (sighting.find('body') == None):
-                raise ValueError("Fix.getSightings:  no body tag in sighting.")
+                numSightingErrors = numSightingErrors + 1
+                continue
             elif (sighting.find('body').text == None):
-                raise ValueError("Fix.getSightings:  empty body tag in sighting.")
+                numSightingErrors = numSightingErrors + 1
+                continue
             else:
                 body = sighting.find('body').text
             if (sighting.find('date') == None):
-                raise ValueError("Fix.getSightings:  no date tag in sighting.")
+                numSightingErrors = numSightingErrors + 1
+                continue
             else:
                 date = sighting.find('date').text
                 datePattern = re.compile("^((19|20)\\d\\d)-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])$")
                 if (re.match(datePattern, date) == None):
-                    raise ValueError("Fix.getSightings:  invalid date format.")
+                    numSightingErrors = numSightingErrors + 1
+                    continue
             if (sighting.find('time') == None):
-                raise ValueError("Fix.getSightings:  no time tag in sighting.")
+                numSightingErrors = numSightingErrors + 1
+                continue
             else:
                 time = sighting.find('time').text
                 timePattern = re.compile("^([0-1]?\d|2[0-3]):([0-5]?\d):([0-5]?\d)")
                 if (re.match(timePattern, time) == None):
-                    raise ValueError("Fix.getSightings:  invalid time format.")
+                    numSightingErrors = numSightingErrors + 1
+                    continue
             if (sighting.find('observation') == None):
-                raise ValueError("Fix.getSightings:  no observation tag in sighting.")
+                numSightingErrors = numSightingErrors + 1
+                continue
             else:
                 observation = sighting.find('observation').text
                 obsPattern = re.compile("^(0[0-8]\d)d([0-5]\d)(\.[0-9]?)?")
                 if (re.match(obsPattern, observation) == None):
-                    raise ValueError("Fix.getSightings:  invalid observation format.")
+                    numSightingErrors = numSightingErrors + 1
+                    continue
                 angle1 = Angle.Angle()
                 angle1.setDegreesAndMinutes(observation)
                 angle2 = Angle.Angle()
                 angle2.setDegreesAndMinutes("0d0.1")
                 if (angle1.getDegrees() <= angle2.getDegrees()):
-                    raise ValueError("Fix.getSightings:  observed altitude is less than 0d0.1.")
+                    numSightingErrors = numSightingErrors + 1
+                    continue
             if (sighting.find('height') == None):
                 height = 0
             else:
                 height = sighting.find('height').text
                 heightPattern = re.compile("^\d*\.?\d*$")
                 if (re.match(heightPattern, height) == None):
-                    raise ValueError("Fix.getSightings:  invalid height.")
+                    numSightingErrors = numSightingErrors + 1
+                    continue
                 height = float(height)
             if (sighting.find('temperature') == None):
                 temperature = 72
             else:
                 temperature = int(sighting.find('temperature').text)
                 if (temperature > 120 or temperature < -20):
-                    raise ValueError("Fix.getSightings:  temperature is out of range.")
+                    numSightingErrors = numSightingErrors + 1
+                    continue
             if (sighting.find('pressure') == None):
                 pressure = 1010
             else:
                 pressure = sighting.find('pressure').text.strip()
                 presPattern = re.compile("^\d*$")
                 if (re.match(presPattern, pressure) == None):
-                    raise ValueError("Fix.getSightings:  invalid pressure.")
+                    numSightingErrors = numSightingErrors + 1
+                    continue
                 pressure = int(pressure)
                 if (pressure < 100 or pressure > 1100):
-                    raise ValueError("Fix.getSightings:  pressure is out of range.")
+                    numSightingErrors = numSightingErrors + 1
+                    continue
             if (sighting.find('horizon') == None):
                 horizon = "natural"
             else:
                 horizon = sighting.find('horizon').text.lower()
                 horizonPattern = re.compile("(artificial|natural)")
                 if (re.match(horizonPattern, horizon) == None):
-                    raise ValueError("Fix.getSightings:  invalid horizon.")
+                    numSightingErrors = numSightingErrors + 1
+                    continue
                 
             adjAltitude = self.adjustAltitude(horizon, height, pressure, temperature, observation)
+            
+            geoPosLocation = self.getGeoPosition(body, date, time)
+            if (geoPosLocation == None):
+                numSightingErrors = numSightingErrors + 1
+                continue
                 
-            sightingsListLine = [body, date, time, observation, height, temperature, pressure, horizon, adjAltitude]
+            sightingsListLine = [body, date, time, observation, height, temperature, pressure, horizon,
+                                 adjAltitude, geoPosLocation]
             sightingsList.append(sightingsListLine)
             
         sightingsList.sort(key=lambda x: (x[1], x[2], x[0]))
         
         for sightingEntry in sightingsList:
-            self.log(sightingEntry[0] + '\t' + sightingEntry[1] + '\t' + sightingEntry[2] + '\t' + sightingEntry[8])
-            
+            self.log(sightingEntry[0] + '\t' + sightingEntry[1] + '\t' + sightingEntry[2] + '\t' + sightingEntry[8]
+                     + '\t' + sightingEntry[9][0] + '\t' + sightingEntry[9][1])
+        
+        self.log("Sighting errors:\t" + str(numSightingErrors))  
         self.log("End of sighting file " + self.sightingFile)
         
         approximateLatitude = "0d0.0"
@@ -185,7 +213,7 @@ class Fix():
         f.write(entry)
         
     def adjustAltitude(self, horizon, height, pressure, temperature, observation):
-        if (horizon == "natural" or "Natural"):
+        if (horizon == "natural"):
             dip = (-0.97 * math.sqrt(height)) / 60
         else:
             dip = 0
@@ -200,4 +228,89 @@ class Fix():
         altitude.setDegrees(adjustedAltitude)
         
         return altitude.getString()
+    
+    def getGeoPosition(self, body, date, time):
+        with open(self.starFile) as starFile:
+            starsList = starFile.readlines()
+            
+        starMatches = []
+        for star in starsList:
+            if (star.split('\t')[0] == body):
+                starMatches.append(star)
+                
+        if (len(starMatches) == 0):
+            return None
+                
+        starMatch = None
+                
+        for star in starMatches:
+            starMatchDate = star.split('\t')[1]
+            keyMonth = date.split('-')[1]
+            keyDay = date.split('-')[2]
+            starMatchMonth = starMatchDate.split('/')[0]
+            starMatchDay = starMatchDate.split('/')[1]
+            
+            if (keyMonth >= starMatchMonth and keyDay >= starMatchDay):
+                starMatch = star
+            else:
+                break
+            
+        latitude = starMatch.split('\t')[3]
+        shaStar = starMatch.split('\t')[2]
         
+        with open(self.ariesFile) as ariesFile:
+            ariesList = ariesFile.readlines()
+            
+        ariesMatch = None
+        index = 0
+        
+        for aries in ariesList:
+            ariesMatchDate = aries.split('\t')[0]
+            keyMonth = date.split('-')[1]
+            keyDay = date.split('-')[2]
+            keyHour = time.split(':')[0]
+            ariesMatchMonth = ariesMatchDate.split('/')[0]
+            ariesMatchDay = ariesMatchDate.split('/')[1]
+            ariesMatchHour = aries.split('\t')[1]
+            
+            if (ariesMatchMonth == keyMonth and ariesMatchDay == keyDay and ariesMatchHour == keyHour):
+                ariesMatch = aries
+            else:
+                index = index + 1
+                continue
+            
+        if (ariesMatch == None):
+            return None
+        
+        ghaAries1 = ariesMatch.split('\t')[2]
+        ghaAries2 = ariesList[index].split('\t')[2]
+        if (len(ghaAries2) < 15):
+            return None
+        
+        minutes = int(time.split(':')[1])
+        seconds = int(time.split(':')[2])
+        s = 60 * minutes + seconds
+        
+        ghaAriesAngle1 = Angle.Angle()
+        ghaAriesAngle2 = Angle.Angle()
+        
+        ghaAriesAngle1.setDegreesAndMinutes(ghaAries1)
+        ghaAriesAngle2.setDegreesAndMinutes(ghaAries2)
+        
+        ghaAriesAngle2.subtract(ghaAriesAngle1)
+        
+        tempAngle = ghaAriesAngle2.getDegrees()
+        tempAngle = tempAngle * (s / 3600)
+        ghaAriesAngle2.setDegrees(tempAngle)
+        
+        ghaAriesAngle1.add(ghaAriesAngle2)
+        
+        shaStarAngle = Angle.Angle()
+        shaStarAngle.setDegreesAndMinutes(shaStar)
+        shaStarAngle.add(ghaAriesAngle1)
+        
+        longitude = shaStarAngle.getString()
+        
+        
+        output = [longitude, latitude]
+        return output
