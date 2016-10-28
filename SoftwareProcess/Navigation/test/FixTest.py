@@ -86,11 +86,15 @@ class FixTest(unittest.TestCase):
     def test300_010_ShouldReturnTuple(self):
         aFix = Fix.Fix("test.txt")
         aFix.setSightingFile("file.xml")
+        aFix.setAriesFile("aries.txt")
+        aFix.setStarFile("stars.txt")
         self.assertEquals(type(aFix.getSightings()), tuple)
         
     def test300_020_ShouldWriteToLog(self):
         aFix = Fix.Fix("test.txt")
         aFix.setSightingFile("file.xml")
+        aFix.setAriesFile("aries.txt")
+        aFix.setStarFile("stars.txt")
         aFix.getSightings()
         f = open("test.txt", "r")
         str = f.read()
