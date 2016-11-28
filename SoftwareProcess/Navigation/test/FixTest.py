@@ -32,7 +32,7 @@ class FixTest(unittest.TestCase):
         aFix = Fix.Fix("test.txt")
         f = open("test.txt", "r")
         str = f.read()
-        self.assertNotEqual(str.find("Log File:\t"), -1)
+        self.assertNotEqual(str.find("Log file:\t"), -1)
         
 #    Sad path        
     def test100_910_ShouldReturnValueErrorForWrongFileInputStringLength(self):
@@ -63,7 +63,7 @@ class FixTest(unittest.TestCase):
         aFix.setSightingFile("file.xml")
         f = open("test.txt", "r")
         str = f.read()
-        self.assertNotEqual(str.find("Sighting File:\t"), -1)
+        self.assertNotEqual(str.find("Sighting file:\t"), -1)
         
 #    Sad path
     def test200_910_ShouldRaiseValueErrorForWrongFileFormatt(self):
@@ -122,7 +122,7 @@ class FixTest(unittest.TestCase):
         aFix.setStarFile("aries.txt")
         f = open("test.txt", "r")
         str = f.read()
-        self.assertNotEqual(str.find("Aries File:\t"), -1)
+        self.assertNotEqual(str.find("Aries file:\t"), -1)
         
 #    Sad path
     def test400_910_ShouldRaiseValueErrorForWrongFileFormatt(self):
@@ -147,7 +147,7 @@ class FixTest(unittest.TestCase):
         aFix.setStarFile("stars.txt")
         f = open("test.txt", "r")
         str = f.read()
-        self.assertNotEqual(str.find("Star File:\t"), -1)
+        self.assertNotEqual(str.find("Star file:\t"), -1)
         
 #    Sad path
     def test500_910_ShouldRaiseValueErrorForWrongFileFormatt(self):

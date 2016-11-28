@@ -23,7 +23,7 @@ class Fix():
         except IOError:
             raise ValueError("Fix.__init__:  logFile could not be opened.")
         self.logFile = logFile
-        self.log("Log File:\t" + os.path.abspath(logFile))
+        self.log("Log file:\t" + os.path.abspath(logFile))
         self.sightingFile = None
         self.ariesFile = None
         self.starFile = None
@@ -40,11 +40,13 @@ class Fix():
         except IOError:
             raise ValueError("Fix.setSightingFile:  sightingFile could not be opened.")
         self.sightingFile = sightingFile
-        self.log("Sighting File:\t" + os.path.abspath(sightingFile))
+        self.log("Sighting file:\t" + os.path.abspath(sightingFile))
         output = os.path.abspath(sightingFile)
         return output
     
-    def setAriesFile(self, ariesFile):
+    def setAriesFile(self, ariesFile="0"):
+        if (ariesFile == "0"):
+            raise ValueError("Fix.setAriesFile:  a valid aries file is required.")
         if (type(ariesFile) != str or len(ariesFile) < 5):
             raise ValueError("Fix.setAriesFile:  ariesFile must be a string that is the filename of a .txt filetype.")
         if (ariesFile.find(".txt") == -1):
@@ -54,11 +56,13 @@ class Fix():
         except IOError:
             raise ValueError("Fix.setAriesFile:  ariesFile could not be opened.")
         self.ariesFile = ariesFile
-        self.log("Aries File:\t" + os.path.abspath(ariesFile))
+        self.log("Aries file:\t" + os.path.abspath(ariesFile))
         output = os.path.abspath(ariesFile)
         return output
     
-    def setStarFile(self, starFile):
+    def setStarFile(self, starFile="0"):
+        if (starFile == "0"):
+            raise ValueError("Fix.setStarFile:  a valid star file is required.")
         if (type(starFile) != str or len(starFile) < 5):
             raise ValueError("Fix.setStarFile:  starFile must be a string that is the filename of a .txt filetype.")
         if (starFile.find(".txt") == -1):
@@ -68,7 +72,7 @@ class Fix():
         except IOError:
             raise ValueError("Fix.setStarFile:  starFile could not be opened.")
         self.starFile = starFile
-        self.log("Star File:\t" + os.path.abspath(starFile))
+        self.log("Star file:\t" + os.path.abspath(starFile))
         output = os.path.abspath(starFile)
         return output
     
@@ -255,8 +259,8 @@ class Fix():
             else:
                 break
             
-        latitude = starMatch.split('\t')[3]
-        shaStar = starMatch.split('\t')[2]
+        latitude = starMatch.split('\t')[3].strip()
+        shaStar = starMatch.split('\t')[2].strip()
         
         with open(self.ariesFile) as ariesFile:
             ariesList = ariesFile.readlines()
@@ -269,12 +273,15 @@ class Fix():
             keyMonth = date.split('-')[1]
             keyDay = date.split('-')[2]
             keyHour = time.split(':')[0]
+            if (keyHour[0] == '0'):
+                keyHour = keyHour[1];
             ariesMatchMonth = ariesMatchDate.split('/')[0]
             ariesMatchDay = ariesMatchDate.split('/')[1]
             ariesMatchHour = aries.split('\t')[1]
             
             if (ariesMatchMonth == keyMonth and ariesMatchDay == keyDay and ariesMatchHour == keyHour):
                 ariesMatch = aries
+                break
             else:
                 index = index + 1
                 continue
@@ -282,14 +289,12 @@ class Fix():
         if (ariesMatch == None):
             return None
         
-        ghaAries1 = ariesMatch.split('\t')[2]
-        ghaAries2 = ariesList[index].split('\t')[2]
-        if (len(ghaAries2) < 15):
-            return None
+        ghaAries1 = ariesMatch.split('\t')[2].strip()
+        ghaAries2 = ariesList[index + 1].split('\t')[2].strip()
         
         minutes = int(time.split(':')[1])
         seconds = int(time.split(':')[2])
-        s = 60 * minutes + seconds
+        s = 60.0 * minutes + seconds
         
         ghaAriesAngle1 = Angle.Angle()
         ghaAriesAngle2 = Angle.Angle()
@@ -297,7 +302,7 @@ class Fix():
         ghaAriesAngle2.setDegreesAndMinutes(ghaAries2)
         ghaAriesAngle2.subtract(ghaAriesAngle1)
         tempAngle = ghaAriesAngle2.getDegrees()
-        tempAngle = tempAngle * (s / 3600)
+        tempAngle = tempAngle * (s / 3600.0)
         ghaAriesAngle2.setDegrees(tempAngle)
         ghaAriesAngle1.add(ghaAriesAngle2)
         shaStarAngle = Angle.Angle()
@@ -306,5 +311,5 @@ class Fix():
         
         longitude = shaStarAngle.getString()
         
-        output = [longitude, latitude]
+        output = [latitude, longitude]
         return output
