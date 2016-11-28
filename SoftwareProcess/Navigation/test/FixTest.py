@@ -76,7 +76,7 @@ class FixTest(unittest.TestCase):
 #    Acceptance Test 300
 #        Analysis - getSightings
 #            inputs:
-#                none
+#                assumedLatitude, assumedLongitude
 #            outputs:
 #                Tuple with latitude and longitude of approximate location
 #            state change:
@@ -105,6 +105,26 @@ class FixTest(unittest.TestCase):
         aFix = Fix.Fix("test.txt")
         with self.assertRaises(ValueError) as context:
             aFix.getSightings()
+        self.assertEquals(expectedDiag, context.exception.args[0][0:len(expectedDiag)])
+        
+    def test300_920_ShouldReturnValueErrorForWrongFormatAssumedLatitude(self):
+        expectedDiag = "Fix.getSightings:  "
+        aFix = Fix.Fix("test.txt")
+        aFix.setSightingFile("file.xml")
+        aFix.setAriesFile("aries.txt")
+        aFix.setStarFile("stars.txt")
+        with self.assertRaises(ValueError) as context:
+            aFix.getSightings("test", "0d0.0")
+        self.assertEquals(expectedDiag, context.exception.args[0][0:len(expectedDiag)])
+        
+    def test300_930_ShouldReturnValueErrorForWrongFormatAssumedLongitude(self):
+        expectedDiag = "Fix.getSightings:  "
+        aFix = Fix.Fix("test.txt")
+        aFix.setSightingFile("file.xml")
+        aFix.setAriesFile("aries.txt")
+        aFix.setStarFile("stars.txt")
+        with self.assertRaises(ValueError) as context:
+            aFix.getSightings("0d0.0", "test")
         self.assertEquals(expectedDiag, context.exception.args[0][0:len(expectedDiag)])
         
 #   Acceptance Test 400
