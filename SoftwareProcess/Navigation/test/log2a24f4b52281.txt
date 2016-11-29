@@ -1,0 +1,7 @@
+LOG:	2016-11-27 20:23:47.654471-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/log2a24f4b52281.txt
+LOG:	2016-11-27 20:23:47.654702-06:00	Sighting file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/CA03_300_ValidStarLatLonInterpolationRequired.xml
+LOG:	2016-11-27 20:23:47.654861-06:00	Aries file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/CA03_Valid_Aries.txt
+LOG:	2016-11-27 20:23:47.655015-06:00	Star file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/CA03_Valid_Stars.txt
+LOG:	2016-11-27 20:23:47.663310-06:00	Betelgeuse	2017-01-16	03:15:42	9d54.7	7d24.3	74d55.2
+LOG:	2016-11-27 20:23:47.663414-06:00	Sighting errors:	0
+LOG:	2016-11-27 20:23:47.663814-06:00	End of sighting file CA03_300_ValidStarLatLonInterpolationRequired.xml
