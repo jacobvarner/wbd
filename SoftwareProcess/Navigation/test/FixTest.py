@@ -95,7 +95,7 @@ class FixTest(unittest.TestCase):
         aFix.setSightingFile("file.xml")
         aFix.setAriesFile("aries.txt")
         aFix.setStarFile("stars.txt")
-        aFix.getSightings()
+        aFix.getSightings("S13d13.9", "32d32.2")
         f = open("test.txt", "r")
         str = f.read()
         self.assertNotEqual(re.search(r'\d+-\d+-\d+\s\d+:\d+:\d', str), None)
@@ -124,7 +124,7 @@ class FixTest(unittest.TestCase):
         aFix.setAriesFile("aries.txt")
         aFix.setStarFile("stars.txt")
         with self.assertRaises(ValueError) as context:
-            aFix.getSightings("0d0.0", "test")
+            aFix.getSightings("S10d1.5", "test")
         self.assertEquals(expectedDiag, context.exception.args[0][0:len(expectedDiag)])
         
 #   Acceptance Test 400

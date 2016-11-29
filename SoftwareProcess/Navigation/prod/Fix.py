@@ -13,6 +13,8 @@ import math
 import re
 import Navigation.prod.Angle as Angle
 import os
+from numpy import arcsin, sin, cos, pi, arccos, float64
+import numpy as np
 
 class Fix():
     def __init__(self, logFile="log.txt"):
@@ -76,13 +78,36 @@ class Fix():
         output = os.path.abspath(starFile)
         return output
     
-    def getSightings(self):
+    def getSightings(self, assumedLatitude="0d0.0", assumedLongitude="0d0.0"):
         if (self.sightingFile == None):
             raise ValueError("Fix.getSightings:  no sightingFile has been set.")
         if (self.ariesFile == None):
             raise ValueError("Fix.getSightings:  no ariesFile has been set.")
         if (self.starFile == None):
             raise ValueError("Fix.getSightings:  no starFile has been set.")
+        
+        if (type(assumedLatitude) != str or len(assumedLatitude) < 5):
+            raise ValueError("Fix.getSightings:  assumedLatitude must be a string in the format h0d0.0")
+        if (assumedLatitude.find("d") == -1):
+            raise ValueError("Fix.getSightings:  assumedLatitude must be a string in the format h0d0.0")
+        
+        if (type(assumedLongitude) != str or len(assumedLongitude) < 5):
+            raise ValueError("Fix.getSightings:  assumedLongitude must be a string in the format h0d0.0")
+        if (assumedLongitude.find("d") == -1):
+            raise ValueError("Fix.getSightings:  assumedLongitude must be a string in the format h0d0.0")
+        
+        if (len(assumedLatitude) == 5):
+            if (assumedLatitude.find("0d0.0") == -1):
+                raise ValueError("Fix.getSightings:  assumedLatitude must be 0d0.0 if h is missing.")
+            
+        if (assumedLatitude.find("0d0.0") != -1):
+            if (len(assumedLatitude) != 5):
+                raise ValueError("Fix.getSightings:  assumedLatitude must not have h if it's equal to 0d0.0.")
+            
+        assumedLatitudeHemi = ""
+        if (assumedLatitude.find("S") == 0 or assumedLatitude.find("N") == 0):
+            assumedLatitudeHemi = assumedLatitude[0];
+            assumedLatitude = assumedLatitude[1:len(assumedLatitude)]
         
         try:
             tree = ET.parse(self.sightingFile)
@@ -185,23 +210,94 @@ class Fix():
             if (geoPosLocation == None):
                 numSightingErrors = numSightingErrors + 1
                 continue
+            
+            result = self.getAzimuthAndDistance(geoPosLocation, assumedLongitude, assumedLatitude, adjAltitude)
+            azimuth = result[0]
+            distance = result[1]
                 
             sightingsListLine = [body, date, time, observation, height, temperature, pressure, horizon,
-                                 adjAltitude, geoPosLocation]
+                                 adjAltitude, geoPosLocation, azimuth, distance]
             sightingsList.append(sightingsListLine)
             
         sightingsList.sort(key=lambda x: (x[1], x[2], x[0]))
         
         for sightingEntry in sightingsList:
             self.log(sightingEntry[0] + '\t' + sightingEntry[1] + '\t' + sightingEntry[2] + '\t' + sightingEntry[8]
-                     + '\t' + sightingEntry[9][0] + '\t' + sightingEntry[9][1])
+                     + '\t' + sightingEntry[9][0] + '\t' + sightingEntry[9][1] + '\t' + assumedLatitudeHemi + assumedLatitude
+                     + '\t' + assumedLongitude + '\t' + sightingEntry[10] + '\t' + str(sightingEntry[11]))
         
-        self.log("Sighting errors:\t" + str(numSightingErrors))  
+        self.log("Sighting errors:\t" + str(numSightingErrors))
+        
+        approximateLatitude = self.getApproximateLocation(sightingsList, assumedLatitude, assumedLongitude)[0]
+        approximateLongitude = self.getApproximateLocation(sightingsList, assumedLatitude, assumedLongitude)[1]
+        self.log("Approximate latitude:\t" + assumedLatitudeHemi + approximateLatitude + '\tApproximate longitude:\t' + approximateLongitude) 
+        
         self.log("End of sighting file " + self.sightingFile)
         
-        approximateLatitude = "0d0.0"
-        approximateLongitude = "0d0.0"
         return (approximateLatitude, approximateLongitude)
+    
+    def getApproximateLocation(self, sightingsList, assumedLatitude, assumedLongitude):
+        sumLatitude = 0
+        for sighting in sightingsList:
+            azimuthAngle = Angle.Angle()
+            azimuthAngle.setDegreesAndMinutes(sighting[10])
+            sumLatitude += np.float64((sighting[11] * pi / 180.0) * cos(azimuthAngle.getDegrees() * pi / 180.0)).item()
+            
+        approximateLatitudeAngle = Angle.Angle()
+        approximateLatitudeAngle.setDegrees(sumLatitude / 60.0)
+        assumedLatitudeAngle = Angle.Angle()
+        assumedLatitudeAngle.setDegreesAndMinutes(assumedLatitude)
+        approximateLatitudeAngle.add(assumedLatitudeAngle)
+        approximateLatitude = approximateLatitudeAngle.getString()
+        
+        sumLongitude = 0
+        for sighting in sightingsList:
+            azimuthAngle = Angle.Angle()
+            azimuthAngle.setDegreesAndMinutes(sighting[10])
+            sumLongitude += np.float64((sighting[11] * pi / 180.0) * sin(azimuthAngle.getDegrees() * pi / 180.0)).item()
+            
+        approximateLongitudeAngle = Angle.Angle()
+        approximateLongitudeAngle.setDegrees(sumLongitude / 60.0)
+        assumedLongitudeAngle = Angle.Angle()
+        assumedLongitudeAngle.setDegreesAndMinutes(assumedLongitude)
+        approximateLongitudeAngle.add(assumedLongitudeAngle)
+        approximateLongitude = approximateLongitudeAngle.getString()
+        
+        return [approximateLatitude, approximateLongitude]
+    
+    def getAzimuthAndDistance(self, geoPosLocation, assumedLongitude, assumedLatitude, adjAltitude):
+        assumedLongitudeAngle = Angle.Angle()
+        assumedLatitudeAngle = Angle.Angle()
+        assumedLongitudeAngle.setDegreesAndMinutes(assumedLongitude)
+        assumedLatitudeAngle.setDegreesAndMinutes(assumedLatitude)
+        lhaAngle = Angle.Angle()
+        lhaAngle.setDegreesAndMinutes(geoPosLocation[1])
+        lhaAngle.subtract(assumedLongitudeAngle)
+        geoLatitudeAngle = Angle.Angle()
+        geoLongitudeAngle = Angle.Angle()
+        geoLatitudeAngle.setDegreesAndMinutes(geoPosLocation[0])
+        geoLongitudeAngle.setDegreesAndMinutes(geoPosLocation[1])
+        
+        correctedAltitudeRaw = arcsin((sin(geoLatitudeAngle.getDegrees() * pi / 180.0) * sin(assumedLatitudeAngle.getDegrees() * pi / 180.0)) + (cos(geoLatitudeAngle.getDegrees() * pi / 180.0) * cos(assumedLatitudeAngle.getDegrees() * pi / 180.0) * cos(lhaAngle.getDegrees() * pi / 180.0)))
+        
+        correctedAltitude = np.float64(correctedAltitudeRaw).item()
+        
+        correctedAltitudeAngle = Angle.Angle()
+        correctedAltitudeAngle.setDegrees(correctedAltitude)
+        
+        adjustedAltitudeTemp = Angle.Angle()
+        adjustedAltitudeTemp.setDegreesAndMinutes(adjAltitude)
+        adjustedAltitudeTemp.subtract(correctedAltitudeAngle)
+        distance = int(round(adjustedAltitudeTemp.getDegrees(), 0))
+        
+        azimuthRaw = arccos((sin(geoLatitudeAngle.getDegrees() * pi / 180.0) - sin(assumedLatitudeAngle.getDegrees() * pi / 180.0)) * sin(distance * pi / 180)) / (cos(assumedLatitudeAngle.getDegrees() * pi / 180.0) * cos(distance * pi / 180.0))
+        
+        azimuth = np.float64(azimuthRaw).item()
+        azimuthAngle = Angle.Angle()
+        azimuthAngle.setDegrees(azimuth)
+        azimuth = azimuthAngle.getString()
+        
+        return [azimuth, distance]
     
     def log(self, logString):
         entry = "LOG:\t"

@@ -16,7 +16,7 @@ class Angle():
     
     def setDegrees(self, degrees = 0):
         if (type(degrees) != int and type(degrees) != float):
-            raise ValueError("Angle.setDegrees:  'degrees' must be either an integer or floating point value.")
+            raise ValueError("Angle.setDegrees:  'degrees' must be either an integer or floating point value." + str(type(degrees)))
         degrees = round(degrees * 60.0, 1) / 60.0
         degrees = float(degrees % 360)
         self.angle = degrees
