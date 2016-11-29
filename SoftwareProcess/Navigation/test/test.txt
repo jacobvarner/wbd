@@ -1,0 +1,114 @@
+LOG:	2016-11-28 19:00:32.085589-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:00:32.085998-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:00:32.088173-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:00:32.088372-06:00	Sighting file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/file.xml
+LOG:	2016-11-28 19:00:32.088832-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:00:32.089097-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:00:32.089604-06:00	Sighting file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/file.xml
+LOG:	2016-11-28 19:00:32.090035-06:00	Aries file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/aries.txt
+LOG:	2016-11-28 19:00:32.090257-06:00	Star file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/stars.txt
+LOG:	2016-11-28 19:00:32.121922-06:00	Aldebaran	2016-03-01	23:40:01	15d1.5	16d32.3	85d59.4	0d0.0	0d0.0	1d33.0	15
+LOG:	2016-11-28 19:00:32.122063-06:00	Peacock	2016-03-02	00:05:05	45d11.9	-56d41.0	214d46.6	0d0.0	0d0.0	3d11.4	46
+LOG:	2016-11-28 19:00:32.122327-06:00	Sighting errors:	0
+LOG:	2016-11-28 19:00:32.123191-06:00	Approximate latitude:	0d1.1	Approximate longitude:	0d0.1
+LOG:	2016-11-28 19:00:32.123298-06:00	End of sighting file file.xml
+LOG:	2016-11-28 19:00:32.124338-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:00:32.124614-06:00	Sighting file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/file.xml
+LOG:	2016-11-28 19:00:32.124869-06:00	Aries file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/aries.txt
+LOG:	2016-11-28 19:00:32.125046-06:00	Star file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/stars.txt
+LOG:	2016-11-28 19:00:32.157437-06:00	Aldebaran	2016-03-01	23:40:01	15d1.5	16d32.3	85d59.4	S13d13.9	32d32.2	1d38.9	14
+LOG:	2016-11-28 19:00:32.157558-06:00	Peacock	2016-03-02	00:05:05	45d11.9	-56d41.0	214d46.6	S13d13.9	32d32.2	3d36.8	46
+LOG:	2016-11-28 19:00:32.157695-06:00	Sighting errors:	0
+LOG:	2016-11-28 19:00:32.158088-06:00	Approximate latitude:	S13d14.9	Approximate longitude:	32d32.3
+LOG:	2016-11-28 19:00:32.158156-06:00	End of sighting file file.xml
+LOG:	2016-11-28 19:00:32.159948-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:00:32.160461-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:00:32.160678-06:00	Sighting file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/file.xml
+LOG:	2016-11-28 19:00:32.160919-06:00	Aries file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/aries.txt
+LOG:	2016-11-28 19:00:32.161126-06:00	Star file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/stars.txt
+LOG:	2016-11-28 19:00:32.162507-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:00:32.162752-06:00	Sighting file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/file.xml
+LOG:	2016-11-28 19:00:32.163013-06:00	Aries file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/aries.txt
+LOG:	2016-11-28 19:00:32.163160-06:00	Star file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/stars.txt
+LOG:	2016-11-28 19:00:32.163526-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:00:32.164283-06:00	Star file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/aries.txt
+LOG:	2016-11-28 19:00:32.164732-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:00:32.165042-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:00:32.165968-06:00	Star file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/stars.txt
+LOG:	2016-11-28 19:00:32.166493-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:01:46.412884-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:01:46.413202-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:01:46.414964-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:01:46.415157-06:00	Sighting file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/file.xml
+LOG:	2016-11-28 19:01:46.415701-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:01:46.415976-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:01:46.416729-06:00	Sighting file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/file.xml
+LOG:	2016-11-28 19:01:46.416941-06:00	Aries file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/aries.txt
+LOG:	2016-11-28 19:01:46.417117-06:00	Star file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/stars.txt
+LOG:	2016-11-28 19:01:46.446141-06:00	Aldebaran	2016-03-01	23:40:01	15d1.5	16d32.3	85d59.4	0d0.0	0d0.0	1d33.0	15
+LOG:	2016-11-28 19:01:46.446352-06:00	Peacock	2016-03-02	00:05:05	45d11.9	-56d41.0	214d46.6	0d0.0	0d0.0	3d11.4	46
+LOG:	2016-11-28 19:01:46.446564-06:00	Sighting errors:	0
+LOG:	2016-11-28 19:01:46.447073-06:00	Approximate latitude:	0d1.1	Approximate longitude:	0d0.1
+LOG:	2016-11-28 19:01:46.447311-06:00	End of sighting file file.xml
+LOG:	2016-11-28 19:01:46.448132-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:01:46.448281-06:00	Sighting file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/file.xml
+LOG:	2016-11-28 19:01:46.448566-06:00	Aries file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/aries.txt
+LOG:	2016-11-28 19:01:46.448724-06:00	Star file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/stars.txt
+LOG:	2016-11-28 19:01:46.479058-06:00	Aldebaran	2016-03-01	23:40:01	15d1.5	16d32.3	85d59.4	S13d13.9	32d32.2	1d38.9	14
+LOG:	2016-11-28 19:01:46.479227-06:00	Peacock	2016-03-02	00:05:05	45d11.9	-56d41.0	214d46.6	S13d13.9	32d32.2	3d36.8	46
+LOG:	2016-11-28 19:01:46.479407-06:00	Sighting errors:	0
+LOG:	2016-11-28 19:01:46.479969-06:00	Approximate latitude:	S13d14.9	Approximate longitude:	32d32.3
+LOG:	2016-11-28 19:01:46.480134-06:00	End of sighting file file.xml
+LOG:	2016-11-28 19:01:46.481568-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:01:46.482097-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:01:46.482240-06:00	Sighting file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/file.xml
+LOG:	2016-11-28 19:01:46.482440-06:00	Aries file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/aries.txt
+LOG:	2016-11-28 19:01:46.482583-06:00	Star file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/stars.txt
+LOG:	2016-11-28 19:01:46.483790-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:01:46.484020-06:00	Sighting file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/file.xml
+LOG:	2016-11-28 19:01:46.484233-06:00	Aries file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/aries.txt
+LOG:	2016-11-28 19:01:46.484382-06:00	Star file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/stars.txt
+LOG:	2016-11-28 19:01:46.484726-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:01:46.485386-06:00	Star file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/aries.txt
+LOG:	2016-11-28 19:01:46.485833-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:01:46.486115-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:01:46.486870-06:00	Star file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/stars.txt
+LOG:	2016-11-28 19:01:46.488144-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:02:05.788225-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:02:05.789636-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:02:05.790434-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:02:05.790610-06:00	Sighting file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/file.xml
+LOG:	2016-11-28 19:02:05.792060-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:02:05.792420-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:02:05.792574-06:00	Sighting file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/file.xml
+LOG:	2016-11-28 19:02:05.793588-06:00	Aries file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/aries.txt
+LOG:	2016-11-28 19:02:05.793796-06:00	Star file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/stars.txt
+LOG:	2016-11-28 19:02:05.822161-06:00	Aldebaran	2016-03-01	23:40:01	15d1.5	16d32.3	85d59.4	0d0.0	0d0.0	1d33.0	15
+LOG:	2016-11-28 19:02:05.822307-06:00	Peacock	2016-03-02	00:05:05	45d11.9	-56d41.0	214d46.6	0d0.0	0d0.0	3d11.4	46
+LOG:	2016-11-28 19:02:05.822552-06:00	Sighting errors:	0
+LOG:	2016-11-28 19:02:05.823047-06:00	Approximate latitude:	0d1.1	Approximate longitude:	0d0.1
+LOG:	2016-11-28 19:02:05.823356-06:00	End of sighting file file.xml
+LOG:	2016-11-28 19:02:05.824495-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:02:05.825034-06:00	Sighting file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/file.xml
+LOG:	2016-11-28 19:02:05.825214-06:00	Aries file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/aries.txt
+LOG:	2016-11-28 19:02:05.825518-06:00	Star file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/stars.txt
+LOG:	2016-11-28 19:02:05.859591-06:00	Aldebaran	2016-03-01	23:40:01	15d1.5	16d32.3	85d59.4	S13d13.9	32d32.2	1d38.9	14
+LOG:	2016-11-28 19:02:05.859784-06:00	Peacock	2016-03-02	00:05:05	45d11.9	-56d41.0	214d46.6	S13d13.9	32d32.2	3d36.8	46
+LOG:	2016-11-28 19:02:05.860034-06:00	Sighting errors:	0
+LOG:	2016-11-28 19:02:05.860630-06:00	Approximate latitude:	S13d14.9	Approximate longitude:	32d32.3
+LOG:	2016-11-28 19:02:05.860797-06:00	End of sighting file file.xml
+LOG:	2016-11-28 19:02:05.862227-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:02:05.862668-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:02:05.862819-06:00	Sighting file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/file.xml
+LOG:	2016-11-28 19:02:05.863011-06:00	Aries file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/aries.txt
+LOG:	2016-11-28 19:02:05.863172-06:00	Star file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/stars.txt
+LOG:	2016-11-28 19:02:05.864289-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:02:05.864468-06:00	Sighting file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/file.xml
+LOG:	2016-11-28 19:02:05.864686-06:00	Aries file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/aries.txt
+LOG:	2016-11-28 19:02:05.864833-06:00	Star file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/stars.txt
+LOG:	2016-11-28 19:02:05.865195-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:02:05.865844-06:00	Star file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/aries.txt
+LOG:	2016-11-28 19:02:05.866357-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:02:05.867264-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
+LOG:	2016-11-28 19:02:05.867445-06:00	Star file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/stars.txt
+LOG:	2016-11-28 19:02:05.867914-06:00	Log file:	/Volumes/Macintosh HD/Google Drive/Auburn/Current/COMP 5700/Git/SoftwareProcess/SoftwareProcess/Navigation/test/test.txt
