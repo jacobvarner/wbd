@@ -1,3 +1,9 @@
-test = ["test1", "test2", "test3", "test4"]
-index = test.index("test3")
-print(index)
+import numpy as np
+
+float64 = np.sin(2)
+float = np.float64(float64).item()
+
+print(str(type(float64)))
+print(str(type(float)))
+
+np.arccos(-1.01)
