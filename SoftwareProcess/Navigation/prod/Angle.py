@@ -7,7 +7,6 @@
     @author: Jacob Varner
 
 '''
-from objc._objc import NULL
 class Angle():
     def __init__(self):
         # self.angle = ...       set to 0 degrees 0 minutes
@@ -72,8 +71,8 @@ class Angle():
         return self.angle
         pass
     
-    def add(self, angle=NULL):
-        if (angle == NULL):
+    def add(self, angle=None):
+        if (angle == None):
             raise ValueError("Angle.add:  You must pass a valid instance of Angle.")
         if (not isinstance(angle, Angle)):
             raise ValueError("Angle.add:  You must pass a valid instance of Angle.")
@@ -83,8 +82,8 @@ class Angle():
         return self.angle
         pass
     
-    def subtract(self, angle=NULL):
-        if (angle == NULL):
+    def subtract(self, angle=None):
+        if (angle == None):
             raise ValueError("Angle.subtract:  You must pass a valid instance of Angle.")
         if (not isinstance(angle, Angle)):
             raise ValueError("Angle.subtract:  You must pass a valid instance of Angle.")
@@ -94,8 +93,8 @@ class Angle():
         return self.angle
         pass
     
-    def compare(self, angle=NULL):
-        if (angle == NULL):
+    def compare(self, angle=None):
+        if (angle == None):
             raise ValueError("Angle.compare:  You must pass a valid instance of Angle.")
         if (not isinstance(angle, Angle)):
             raise ValueError("Angle.compare:  You must pass a valid instance of Angle.")
